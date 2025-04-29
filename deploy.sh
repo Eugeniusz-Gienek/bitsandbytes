@@ -128,6 +128,28 @@ if [ ! -f "./bitsandbytes/libbitsandbytes_cuda123.so" ]; then
   exit 64
 fi
 
+
+rm -rf build/*
+export CUDA_HOME=$BASE_PATH/cuda-12.6
+make cuda12x CUDA_VERSION=126
+
+if [ ! -f "./bitsandbytes/libbitsandbytes_cuda126.so" ]; then
+  # Control will enter here if $DIRECTORY doesn't exist.
+  echo "Compilation unsuccessful!" 1>&2
+  exit 64
+fi
+
+
+rm -rf build/*
+export CUDA_HOME=$BASE_PATH/cuda-12.8
+make cuda12x CUDA_VERSION=128
+
+if [ ! -f "./bitsandbytes/libbitsandbytes_cuda128.so" ]; then
+  # Control will enter here if $DIRECTORY doesn't exist.
+  echo "Compilation unsuccessful!" 1>&2
+  exit 64
+fi
+
 ############################# START NO CUBLASLT #############################################
 # binaries without 8-bit matmul support START HERE
 # ###########################################################################################
@@ -228,6 +250,28 @@ export CUDA_HOME=$BASE_PATH/cuda-12.3
 make cuda12x_nomatmul CUDA_VERSION=123
 
 if [ ! -f "./bitsandbytes/libbitsandbytes_cuda123_nocublaslt.so" ]; then
+  # Control will enter here if $DIRECTORY doesn't exist.
+  echo "Compilation unsuccessful!" 1>&2
+  exit 64
+fi
+
+
+rm -rf build/*
+export CUDA_HOME=$BASE_PATH/cuda-12.6
+make cuda12x_nomatmul CUDA_VERSION=126
+
+if [ ! -f "./bitsandbytes/libbitsandbytes_cuda126_nocublaslt.so" ]; then
+  # Control will enter here if $DIRECTORY doesn't exist.
+  echo "Compilation unsuccessful!" 1>&2
+  exit 64
+fi
+
+
+rm -rf build/*
+export CUDA_HOME=$BASE_PATH/cuda-12.8
+make cuda12x_nomatmul CUDA_VERSION=128
+
+if [ ! -f "./bitsandbytes/libbitsandbytes_cuda128_nocublaslt.so" ]; then
   # Control will enter here if $DIRECTORY doesn't exist.
   echo "Compilation unsuccessful!" 1>&2
   exit 64
