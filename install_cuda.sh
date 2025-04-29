@@ -6,6 +6,7 @@ URL123=https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installer
 URL124=https://developer.download.nvidia.com/compute/cuda/12.4.1/local_installers/cuda_12.4.1_550.54.15_linux.run
 URL125=https://developer.download.nvidia.com/compute/cuda/12.5.1/local_installers/cuda_12.5.1_555.42.06_linux.run
 URL126=https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda_12.6.2_560.35.03_linux.run
+URL128=https://developer.download.nvidia.com/compute/cuda/12.8.1/local_installers/cuda_12.8.1_570.124.06_linux.run
 
 CUDA_VERSION=$1
 BASE_PATH=$2
@@ -36,11 +37,14 @@ if [[ -n "$CUDA_VERSION" ]]; then
   elif [[ "$CUDA_VERSION" -eq "126" ]]; then
     URL=$URL126
     FOLDER=cuda-12.6
+  elif [[ "$CUDA_VERSION" -eq "128" ]]; then
+    URL=$URL128
+    FOLDER=cuda-12.8
   else
-    echo "argument error: No cuda version passed as input. Choose among versions 118 to 126"
+    echo "argument error: No cuda version passed as input. Choose among versions 118 to 128"
   fi
 else
-    echo "argument error: No cuda version passed as input. Choose among versions 118 to 126"
+    echo "argument error: No cuda version passed as input. Choose among versions 118 to 128"
 fi
 
 FILE=$(basename $URL)
